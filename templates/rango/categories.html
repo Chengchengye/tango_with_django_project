@@ -1,0 +1,19 @@
+{% load rango_template_tags %}
+{% load staticfiles %}
+<ul>
+{% if categories %}
+    {% for c in categories %}
+        {% if c == current_category %}
+        <li><a href="{% url 'rango:show_category' c.slug %}">{{ c.name }}</a></li>
+        {% else %}
+        <li>
+            <a href="{% url 'rango:show_category' c.slug %}">{{ c.name }}</a>
+        </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+<div>
+    {% block sidebar_block %}
+    {% get_category_list %}
+    {% endblock %}
+</div>
